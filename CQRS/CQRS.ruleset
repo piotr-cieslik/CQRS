@@ -6,7 +6,7 @@
     <Rule Id="SA1118" Action="Warning" />
     <Rule Id="SA1129" Action="Warning" />
     <Rule Id="SA1305" Action="Warning" />
-    <Rule Id="SA1309" Action="Warning" />
+    <Rule Id="SA1309" Action="None" />
     <Rule Id="SA1407" Action="Warning" />
     <Rule Id="SA1408" Action="Warning" />
     <Rule Id="SA1412" Action="Warning" />
