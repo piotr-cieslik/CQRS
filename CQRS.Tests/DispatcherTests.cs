@@ -7,30 +7,68 @@ namespace CQRS.Tests
     public sealed class DispatcherTests
     {
         [Fact]
-        public void ThrowsExceptionWhenHandlerNotFound()
+        public void ThrowsExceptionWhenCommandHandlerNotFound()
         {
-            var handlerLookup = new HandlerLookup();
             Assert.Throws<InvalidOperationException>(
-                () => new Dispatcher(handlerLookup).Dispatch(new Operation()));
+                () =>
+                    new Dispatcher(
+                        new HandlerLookup())
+                    .Dispatch(new Command()));
         }
 
         [Fact]
-        public void ThrowsExceptionWhenMoreThanOneHandlerFound()
+        public void ThrowsExceptionWhenQueryHandlerNotFound()
         {
-            var handlerLookup =
-                new HandlerLookup(
-                    new object(),
-                    new object());
             Assert.Throws<InvalidOperationException>(
-                () => new Dispatcher(handlerLookup).Dispatch(new Operation()));
+                () =>
+                    new Dispatcher(
+                        new HandlerLookup())
+                    .Dispatch(new Query()));
         }
 
         [Fact]
-        public void ReturnsResultWhenSingleHandlerFound()
+        public void ThrowsExceptionWhenMoreThanOneCommandHandlerFound()
+        {
+            Assert.Throws<InvalidOperationException>(
+                () => 
+                    new Dispatcher(
+                        new HandlerLookup(
+                            new object(),
+                            new object()))
+                    .Dispatch(new Command()));
+        }
+
+        [Fact]
+        public void ThrowsExceptionWhenMoreThanOneQueryHandlerFound()
+        {
+            Assert.Throws<InvalidOperationException>(
+                () =>
+                    new Dispatcher(
+                        new HandlerLookup(
+                            new object(),
+                            new object()))
+                    .Dispatch(new Query()));
+        }
+
+        [Fact]
+        public void ReturnsResultWhenSingleCommandHandlerFound()
         {
             var expected = new object();
-            var handlerLookup = new HandlerLookup(expected);
-            var result = new Dispatcher(handlerLookup).Dispatch(new Operation());
+            var result =
+                new Dispatcher(
+                    new HandlerLookup(expected))
+                .Dispatch(new Command());
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void ReturnsResultWhenSingleQueryHandlerFound()
+        {
+            var expected = new object();
+            var result =
+                new Dispatcher(
+                    new HandlerLookup(expected))
+                .Dispatch(new Query());
             Assert.Equal(expected, result);
         }
 
@@ -53,8 +91,11 @@ namespace CQRS.Tests
             }
         }
 
-        private sealed class Operation
-            : IOperation<object>
+        private sealed class Command : ICommand<object>
+        {
+        }
+
+        private sealed class Query : IQuery<object>
         {
         }
     }
