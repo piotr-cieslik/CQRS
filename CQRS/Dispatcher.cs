@@ -10,13 +10,14 @@ namespace CQRS
 
         public Dispatcher(IHandlersLookup lookup) => _lookup = lookup;
 
-        public TResult Dispatch<TResult>(IQuery<TResult> query) => DispatchOperation(query);
+        public TResult Dispatch<TResult>(IQuery<TResult> query) => DispatchOperation(query, _lookup.Handler(query));
 
-        public TResult Dispatch<TResult>(ICommand<TResult> command) => DispatchOperation(command);
+        public TResult Dispatch<TResult>(ICommand<TResult> command) => DispatchOperation(command, _lookup.Handler(command));
 
-        private TResult DispatchOperation<TResult>(IOperation<TResult> operation)
+        private TResult DispatchOperation<TResult>(
+            IOperation<TResult> operation,
+            IEnumerable<Func<TResult>> handlers)
         {
-            var handlers = _lookup.Handler(operation);
             var enumerator = handlers.GetEnumerator();
             if (!enumerator.MoveNext())
             {
