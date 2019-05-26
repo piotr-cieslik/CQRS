@@ -1,0 +1,1 @@
+My implementation of CQRS (Command Query Responsibility Segregation) in C#. I successfully use this approach in single and medium size projects.
