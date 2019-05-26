@@ -11,27 +11,38 @@ namespace CQRS
 
         public Dispatcher(IHandlersLookup lookup) => _lookup = lookup;
 
-        public TResult Dispatch<TResult>(IQuery<TResult> query) => DispatchOperation(query, _lookup.Handler(query));
-
-        public TResult Dispatch<TResult>(ICommand<TResult> command) => DispatchOperation(command, _lookup.Handler(command));
-
-        private TResult DispatchOperation<TResult>(
-            IOperation<TResult> operation,
-            IEnumerable<Func<TResult>> handlers)
+        public TResult Dispatch<TResult>(IQuery<TResult> query)
         {
-            var enumerator = handlers.GetEnumerator();
+            var enumerator = _lookup.Handler(query).GetEnumerator();
             if (!enumerator.MoveNext())
             {
-                throw new InvalidOperationException($"Handler not found for {operation.GetType()}");
+                throw new InvalidOperationException($"Handler not found for {query.GetType()}");
             }
 
             var handler = enumerator.Current;
             if (enumerator.MoveNext())
             {
-                throw new InvalidOperationException($"More than one handler found for {operation.GetType()}");
+                throw new InvalidOperationException($"More than one handler found for {query.GetType()}");
             }
 
-            return handler();
+            return handler(query);
+        }
+
+        public TResult Dispatch<TResult>(ICommand<TResult> command)
+        {
+            var enumerator = _lookup.Handler(command).GetEnumerator();
+            if (!enumerator.MoveNext())
+            {
+                throw new InvalidOperationException($"Handler not found for {command.GetType()}");
+            }
+
+            var handler = enumerator.Current;
+            if (enumerator.MoveNext())
+            {
+                throw new InvalidOperationException($"More than one handler found for {command.GetType()}");
+            }
+
+            return handler(command);
         }
     }
 }

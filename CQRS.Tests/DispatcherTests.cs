@@ -82,19 +82,19 @@ namespace CQRS.Tests
                 _results = results;
             }
 
-            IEnumerable<Func<TResult>> IHandlersLookup.Handler<TResult>(ICommand<TResult> _)
+            IEnumerable<Func<ICommand<TResult>, TResult>> IHandlersLookup.Handler<TResult>(ICommand<TResult> _)
             {
                 foreach(var result in _results)
                 {
-                    yield return () => (TResult)result;
+                    yield return __ => (TResult)result;
                 }
             }
 
-            IEnumerable<Func<TResult>> IHandlersLookup.Handler<TResult>(IQuery<TResult> _)
+            IEnumerable<Func<IQuery<TResult>, TResult>> IHandlersLookup.Handler<TResult>(IQuery<TResult> _)
             {
                 foreach (var result in _results)
                 {
-                    yield return () => (TResult)result;
+                    yield return __ => (TResult)result;
                 }
             }
         }
