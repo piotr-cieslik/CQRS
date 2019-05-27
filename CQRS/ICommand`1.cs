@@ -2,7 +2,7 @@
 
 namespace CQRS
 {
-    public interface ICommand<TResult> : IOperation<TResult>
+    public interface ICommand<TResult> : IOperation<TResult>, ICommand
     {
     }
 }
