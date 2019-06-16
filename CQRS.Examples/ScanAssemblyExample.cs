@@ -11,24 +11,17 @@ namespace CQRS.Examples
                 typeof(ScanAssemblyExample).Assembly
                 .GetTypes()
                 .Where(x => x.IsClass)
-                .Where(x => typeof(ICommand).IsAssignableFrom(x));
+                .Where(x => typeof(ICommand).IsAssignableFrom(x))
+                .Count();
             var queries =
                 typeof(ScanAssemblyExample).Assembly
                 .GetTypes()
                 .Where(x => x.IsClass)
-                .Where(x => typeof(IQuery).IsAssignableFrom(x));
+                .Where(x => typeof(IQuery).IsAssignableFrom(x))
+                .Count();
 
-            Console.WriteLine("Commands found in the assembly:");
-            foreach (var command in commands)
-            {
-                Console.WriteLine($"- {command.Name}");
-            }
-
-            Console.WriteLine("Queries found in the assembly:");
-            foreach (var query in queries)
-            {
-                Console.WriteLine($"- {query.Name}");
-            }
+            Console.WriteLine($"Number of commands: {commands}");
+            Console.WriteLine($"Number of queries: {queries}");
         }
     }
 }
