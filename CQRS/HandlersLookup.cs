@@ -5,16 +5,27 @@ using System.Text;
 
 namespace CQRS
 {
+    /// <summary>
+    /// Handlers lookup internally create lookups of command and queries definition.
+    /// To ensure best possible performance try to initialize it once on startup of application.
+    /// </summary>
     public abstract class HandlersLookup : IHandlersLookup
     {
+        private ILookup<Type, CommandDefinition> _commandsLookup;
+        private ILookup<Type, QueryDefinition> _queriesLookup;
+
+        public HandlersLookup()
+        {
+            _commandsLookup = CommandHandlers().ToLookup(x => x.Type);
+            _queriesLookup = QueryHandlers().ToLookup(x => x.Type);
+        }
+
         public IEnumerable<Func<ICommand<TResult>, TResult>> Handler<TResult>(ICommand<TResult> command) =>
-            CommandHandlers()
-                .Where(x => x.Type.Equals(command.GetType()))
+            _commandsLookup[command.GetType()]
                 .Select(x => x.Handler<TResult>());
 
         public IEnumerable<Func<IQuery<TResult>, TResult>> Handler<TResult>(IQuery<TResult> query) =>
-            QueryHandlers()
-                .Where(x => x.Type.Equals(query.GetType()))
+            _queriesLookup[query.GetType()]
                 .Select(x => x.Handler<TResult>());
 
         protected abstract IEnumerable<CommandDefinition> CommandHandlers();
