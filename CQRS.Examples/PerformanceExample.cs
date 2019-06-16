@@ -17,7 +17,7 @@ namespace CQRS.Examples
             dispatch.Stop();
 
             Console.WriteLine($"Initialization time: {initialization.ElapsedMilliseconds}ms.");
-            Console.WriteLine($"Dispatched time: {dispatch.ElapsedMilliseconds}ms.");
+            Console.WriteLine($"Dispatch time: {dispatch.ElapsedMilliseconds}ms.");
         }
     }
 }
