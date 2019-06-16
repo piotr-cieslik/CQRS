@@ -7,6 +7,7 @@ namespace CQRS.Examples
         static void Main(string[] args)
         {
             new QueryExample().Run();
+            new ScanAssemblyExample().Run();
             Console.ReadKey();
         }
     }
