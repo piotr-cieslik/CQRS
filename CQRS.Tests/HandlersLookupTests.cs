@@ -35,9 +35,9 @@ namespace CQRS.Tests
         {
             protected override IEnumerable<CommandDefinition> CommandHandlers()
             {
-                yield return CommandHandler((Command1 x) => new CommandHandler1());
-                yield return CommandHandler((Command2 x) => new CommandHandler2());
-                yield return CommandHandler((Command2 x) => new CommandHandler2());
+                yield return CommandHandler(() => new CommandHandler1());
+                yield return CommandHandler(() => new CommandHandler2());
+                yield return CommandHandler(() => new CommandHandler2());
             }
 
             protected override IEnumerable<QueryDefinition> QueryHandlers()

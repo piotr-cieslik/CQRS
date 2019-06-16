@@ -21,20 +21,20 @@ namespace CQRS
 
         protected abstract IEnumerable<QueryDefinition> QueryHandlers();
 
-        protected CommandDefinition CommandHandler<TCommand, TResult>(Func<TCommand, ICommandHandler<TCommand, TResult>> factory)
+        protected CommandDefinition CommandHandler<TCommand, TResult>(Func<ICommandHandler<TCommand, TResult>> factory)
             where TCommand : ICommand<TResult>
         {
             return new CommandDefinition(
                 typeof(TCommand),
-                command => factory((TCommand)command).Handle((TCommand)command));
+                command => factory().Handle((TCommand)command));
         }
 
-        protected QueryDefinition QueryHandler<TQuery, TResult>(Func<TQuery, IQueryHandler<TQuery, TResult>> factory)
+        protected QueryDefinition QueryHandler<TQuery, TResult>(Func<IQueryHandler<TQuery, TResult>> factory)
             where TQuery : IQuery<TResult>
         {
             return new QueryDefinition(
                 typeof(TQuery),
-                x => factory((TQuery)x).Handle((TQuery)x));
+                x => factory().Handle((TQuery)x));
         }
 
         protected sealed class CommandDefinition

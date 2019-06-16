@@ -46,7 +46,7 @@ namespace CQRS.Examples
 
             protected override IEnumerable<QueryDefinition> QueryHandlers()
             {
-                yield return QueryHandler((GetRandomNumberQuery query) => new GetRandomNumberQueryHandler());
+                yield return QueryHandler(() => new GetRandomNumberQueryHandler());
             }
         }
     }
