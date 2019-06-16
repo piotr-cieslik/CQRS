@@ -6,8 +6,9 @@ using System.Text;
 namespace CQRS
 {
     /// <summary>
-    /// Handlers lookup internally create lookups of command and queries definition.
-    /// To ensure best possible performance try to initialize it once on startup of application.
+    /// This class internally creates lookups of commands and queries definition.
+    /// To ensure best possible performance try to create single instance of HandlerLookup at the application startup.
+    /// However it's possible to have more than one instance of this class, I wouldn't recommend that.
     /// </summary>
     public abstract class HandlersLookup : IHandlersLookup
     {
