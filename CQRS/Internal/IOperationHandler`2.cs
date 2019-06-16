@@ -1,6 +1,4 @@
-﻿using CQRS;
-
-namespace CQRS.Internal
+﻿namespace CQRS.Internal
 {
     public interface IOperationHandler<TOperation, TResult>
         where TOperation : IOperation<TResult>

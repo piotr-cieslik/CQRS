@@ -1,6 +1,4 @@
-﻿using CQRS;
-
-namespace CQRS.Internal
+﻿namespace CQRS.Internal
 {
     public interface IOperation<TResult>
     {

@@ -1,6 +1,4 @@
-﻿using CQRS.Internal;
-
-namespace CQRS
+﻿namespace CQRS
 {
     /// <summary>
     /// Marker interface added for user convenience.
