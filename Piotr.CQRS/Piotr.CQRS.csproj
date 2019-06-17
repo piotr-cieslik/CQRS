@@ -14,10 +14,22 @@
   <PropertyGroup>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <Authors>Piotr Cieślik</Authors>
+    <Company />
+    <Product />
+    <PackageProjectUrl>https://github.com/piotr-cieslik/Piotr.CQRS</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/piotr-cieslik/Piotr.CQRS</RepositoryUrl>
+    <PackageTags>CQRS</PackageTags>
+    <Description>My implementation of CQRS (Command Query Responsibility Segregation) in C#. I successfully use this approach in single and medium size projects.</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="stylecop.json" />
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
