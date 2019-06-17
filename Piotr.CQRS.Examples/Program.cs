@@ -6,8 +6,8 @@ namespace Piotr.CQRS.Examples
     {
         static void Main(string[] args)
         {
-            Console.WriteLine($"Run {nameof(QueryExample)}");
-            new QueryExample().Run();
+            Console.WriteLine($"Run {nameof(MainExample)}");
+            new MainExample().Run();
 
             Console.WriteLine($"Run {nameof(ScanAssemblyExample)}");
             new ScanAssemblyExample().Run();

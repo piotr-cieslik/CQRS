@@ -3,17 +3,16 @@ using System.Collections.Generic;
 
 namespace Piotr.CQRS.Examples
 {
-    public sealed class QueryExample
+    public sealed class MainExample
     {
         public void Run()
         {
             var handlersLookup = new HandlersLookup();
             var disaptcher = new Dispatcher(handlersLookup);
-            var result = disaptcher.Dispatch(new GetRandomNumberQuery(1,100));
-            Console.WriteLine(result);
+            var number = disaptcher.Dispatch(new GetRandomNumberQuery(1,100));
+            var result = disaptcher.Dispatch(new WriteNumberToConsoleCommand(number));
         }
 
-        // Definition of query
         public sealed class GetRandomNumberQuery : IQuery<int>
         {
             public GetRandomNumberQuery(int min, int max)
@@ -27,7 +26,6 @@ namespace Piotr.CQRS.Examples
             public int Max { get; }
         }
 
-        // Definition of query handler
         public sealed class GetRandomNumberQueryHandler : IQueryHandler<GetRandomNumberQuery, int>
         {
             public int Handle(GetRandomNumberQuery query)
@@ -36,12 +34,30 @@ namespace Piotr.CQRS.Examples
             }
         }
 
-        // Bind query and query handler
+        public sealed class WriteNumberToConsoleCommand : ICommand<bool>
+        {
+            public WriteNumberToConsoleCommand(int number)
+            {
+                Number = number;
+            }
+
+            public int Number { get; }
+        }
+
+        public sealed class WriteNumberToConsoleCommandHandler : ICommandHandler<WriteNumberToConsoleCommand, bool>
+        {
+            public bool Handle(WriteNumberToConsoleCommand command)
+            {
+                Console.WriteLine(command.Number);
+                return true;
+            }
+        }
+
         public sealed class HandlersLookup : CQRS.HandlersLookup
         {
             protected override IEnumerable<HandlerDefinition> CommandHandlers()
             {
-                yield break;
+                yield return Handler(() => new WriteNumberToConsoleCommandHandler());
             }
 
             protected override IEnumerable<HandlerDefinition> QueryHandlers()
