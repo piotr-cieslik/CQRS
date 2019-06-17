@@ -42,7 +42,7 @@ namespace Piotr.CQRS.Tests
 
             protected override IEnumerable<QueryDefinition> QueryHandlers()
             {
-                throw new NotImplementedException();
+                yield break;
             }
         }
 
