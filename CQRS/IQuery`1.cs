@@ -1,4 +1,5 @@
 ﻿using CQRS.Internal;
+using CQRS.Markers;
 
 namespace CQRS
 {

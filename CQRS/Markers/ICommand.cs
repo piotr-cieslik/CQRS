@@ -1,4 +1,4 @@
-﻿namespace CQRS
+﻿namespace CQRS.Markers
 {
     /// <summary>
     /// Marker interface added for user convenience.
