@@ -1,9 +1,8 @@
-﻿using Piotr.CQRS.Internal;
-
-namespace Piotr.CQRS
+﻿namespace Piotr.CQRS
 {
-    public interface IQueryHandler<TQuery, TResult> : IOperationHandler<TQuery, TResult>
+    public interface IQueryHandler<TQuery, TResult>
         where TQuery : IQuery<TResult>
     {
+        TResult Handle(TQuery query);
     }
 }
