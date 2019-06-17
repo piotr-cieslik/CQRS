@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace CQRS.Tests
+namespace Piotr.CQRS.Tests
 {
     public sealed class DispatcherTests
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using CQRS.Markers;
+using Piotr.CQRS.Markers;
 
-namespace CQRS.Examples
+namespace Piotr.CQRS.Examples
 {
     public sealed class ScanAssemblyExample
     {

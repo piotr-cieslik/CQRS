@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace CQRS.Examples
+namespace Piotr.CQRS.Examples
 {
     public sealed partial class PerformanceExample
     {

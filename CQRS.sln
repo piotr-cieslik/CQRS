@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28917.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS", "CQRS\CQRS.csproj", "{113EC92E-7E34-4820-A84E-D7EC6D3BF54E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piotr.CQRS", "Piotr.CQRS\Piotr.CQRS.csproj", "{113EC92E-7E34-4820-A84E-D7EC6D3BF54E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Tests", "CQRS.Tests\CQRS.Tests.csproj", "{BE561C5B-9C0A-4758-B0BF-B7FE2DE9655F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piotr.CQRS.Tests", "Piotr.CQRS.Tests\Piotr.CQRS.Tests.csproj", "{BE561C5B-9C0A-4758-B0BF-B7FE2DE9655F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Examples", "CQRS.Examples\CQRS.Examples.csproj", "{6674BC14-18CF-4637-A906-112778D6DE67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piotr.CQRS.Examples", "Piotr.CQRS.Examples\Piotr.CQRS.Examples.csproj", "{6674BC14-18CF-4637-A906-112778D6DE67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-﻿namespace CQRS
+﻿namespace Piotr.CQRS
 {
     public interface IDispatcher
     {

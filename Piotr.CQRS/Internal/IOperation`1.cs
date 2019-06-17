@@ -1,4 +1,4 @@
-﻿namespace CQRS.Internal
+﻿namespace Piotr.CQRS.Internal
 {
     public interface IOperation<TResult>
     {

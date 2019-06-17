@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CQRS
+namespace Piotr.CQRS
 {
     public interface IHandlersLookup
     {

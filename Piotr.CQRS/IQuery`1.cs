@@ -1,7 +1,7 @@
-﻿using CQRS.Internal;
-using CQRS.Markers;
+﻿using Piotr.CQRS.Internal;
+using Piotr.CQRS.Markers;
 
-namespace CQRS
+namespace Piotr.CQRS
 {
     public interface IQuery<TResult> : IOperation<TResult>, IQuery
     {

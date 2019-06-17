@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace CQRS.Tests
+namespace Piotr.CQRS.Tests
 {
     public sealed class HandlersLookupTests
     {

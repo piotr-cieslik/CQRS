@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CQRS
+namespace Piotr.CQRS
 {
     public sealed class Dispatcher : IDispatcher
     {

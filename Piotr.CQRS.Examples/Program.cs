@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CQRS.Examples
+namespace Piotr.CQRS.Examples
 {
     public static class Program
     {

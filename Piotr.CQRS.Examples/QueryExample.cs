@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CQRS.Examples
+namespace Piotr.CQRS.Examples
 {
     public sealed class QueryExample
     {

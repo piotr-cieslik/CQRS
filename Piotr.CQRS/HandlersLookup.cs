@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CQRS
+namespace Piotr.CQRS
 {
     /// <summary>
     /// This class internally creates lookups of commands and queries definition.

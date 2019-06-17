@@ -1,4 +1,4 @@
-﻿namespace CQRS.Markers
+﻿namespace Piotr.CQRS.Markers
 {
     /// <summary>
     /// Marker interface added for user convenience.
