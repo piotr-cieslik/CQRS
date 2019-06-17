@@ -22,14 +22,14 @@ namespace Piotr.CQRS.Examples
 <# } #>
         public sealed class HandlersLookup : CQRS.HandlersLookup
         {
-            protected override IEnumerable<CommandDefinition> CommandHandlers()
+            protected override IEnumerable<HandlerDefinition> CommandHandlers()
             {
 <# for(var i=1; i<=numberOfItems; i++) { #>
-                yield return CommandHandler(() => new CommandHandler<#=i#>());
+                yield return Handler(() => new CommandHandler<#=i#>());
 <# } #>
             }
 
-            protected override IEnumerable<QueryDefinition> QueryHandlers()
+            protected override IEnumerable<HandlerDefinition> QueryHandlers()
             {
                 yield break;
             }

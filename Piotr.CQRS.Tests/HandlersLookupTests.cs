@@ -33,14 +33,14 @@ namespace Piotr.CQRS.Tests
 
         public sealed class TestHandlersLookup : HandlersLookup
         {
-            protected override IEnumerable<CommandDefinition> CommandHandlers()
+            protected override IEnumerable<HandlerDefinition> CommandHandlers()
             {
-                yield return CommandHandler(() => new CommandHandler1());
-                yield return CommandHandler(() => new CommandHandler2());
-                yield return CommandHandler(() => new CommandHandler2());
+                yield return Handler(() => new CommandHandler1());
+                yield return Handler(() => new CommandHandler2());
+                yield return Handler(() => new CommandHandler2());
             }
 
-            protected override IEnumerable<QueryDefinition> QueryHandlers()
+            protected override IEnumerable<HandlerDefinition> QueryHandlers()
             {
                 yield break;
             }

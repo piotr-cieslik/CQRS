@@ -39,14 +39,14 @@ namespace Piotr.CQRS.Examples
         // Bind query and query handler
         public sealed class HandlersLookup : CQRS.HandlersLookup
         {
-            protected override IEnumerable<CommandDefinition> CommandHandlers()
+            protected override IEnumerable<HandlerDefinition> CommandHandlers()
             {
                 yield break;
             }
 
-            protected override IEnumerable<QueryDefinition> QueryHandlers()
+            protected override IEnumerable<HandlerDefinition> QueryHandlers()
             {
-                yield return QueryHandler(() => new GetRandomNumberQueryHandler());
+                yield return Handler(() => new GetRandomNumberQueryHandler());
             }
         }
     }

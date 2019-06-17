@@ -11,8 +11,8 @@ namespace Piotr.CQRS
     /// </summary>
     public abstract class HandlersLookup : IHandlersLookup
     {
-        private ILookup<Type, CommandDefinition> _commandsLookup;
-        private ILookup<Type, QueryDefinition> _queriesLookup;
+        private ILookup<Type, HandlerDefinition> _commandsLookup;
+        private ILookup<Type, HandlerDefinition> _queriesLookup;
 
         public HandlersLookup()
         {
@@ -22,37 +22,37 @@ namespace Piotr.CQRS
 
         public IEnumerable<Func<ICommand<TResult>, TResult>> Handler<TResult>(ICommand<TResult> command) =>
             _commandsLookup[command.GetType()]
-                .Select(x => x.Handler<TResult>());
+                .Select(x => x.CommandHandler<TResult>());
 
         public IEnumerable<Func<IQuery<TResult>, TResult>> Handler<TResult>(IQuery<TResult> query) =>
             _queriesLookup[query.GetType()]
-                .Select(x => x.Handler<TResult>());
+                .Select(x => x.QueryHandler<TResult>());
 
-        protected abstract IEnumerable<CommandDefinition> CommandHandlers();
+        protected abstract IEnumerable<HandlerDefinition> CommandHandlers();
 
-        protected abstract IEnumerable<QueryDefinition> QueryHandlers();
+        protected abstract IEnumerable<HandlerDefinition> QueryHandlers();
 
-        protected CommandDefinition CommandHandler<TCommand, TResult>(Func<ICommandHandler<TCommand, TResult>> factory)
+        protected HandlerDefinition Handler<TCommand, TResult>(Func<ICommandHandler<TCommand, TResult>> factory)
             where TCommand : ICommand<TResult>
         {
-            return new CommandDefinition(
+            return new HandlerDefinition(
                 typeof(TCommand),
                 command => factory().Handle((TCommand)command));
         }
 
-        protected QueryDefinition QueryHandler<TQuery, TResult>(Func<IQueryHandler<TQuery, TResult>> factory)
+        protected HandlerDefinition Handler<TQuery, TResult>(Func<IQueryHandler<TQuery, TResult>> factory)
             where TQuery : IQuery<TResult>
         {
-            return new QueryDefinition(
+            return new HandlerDefinition(
                 typeof(TQuery),
                 x => factory().Handle((TQuery)x));
         }
 
-        protected sealed class CommandDefinition
+        protected sealed class HandlerDefinition
         {
             private readonly Func<object, object> _handler;
 
-            public CommandDefinition(Type type, Func<object, object> handler)
+            public HandlerDefinition(Type type, Func<object, object> handler)
             {
                 Type = type;
                 _handler = handler;
@@ -60,22 +60,9 @@ namespace Piotr.CQRS
 
             public Type Type { get; }
 
-            public Func<ICommand<TResult>, TResult> Handler<TResult>() => x => (TResult)_handler(x);
-        }
+            public Func<ICommand<TResult>, TResult> CommandHandler<TResult>() => x => (TResult)_handler(x);
 
-        protected sealed class QueryDefinition
-        {
-            private readonly Func<object, object> _handler;
-
-            public QueryDefinition(Type type, Func<object, object> handler)
-            {
-                Type = type;
-                _handler = handler;
-            }
-
-            public Type Type { get; }
-
-            public Func<IQuery<TResult>, TResult> Handler<TResult>() => x => (TResult)_handler(x);
+            public Func<IQuery<TResult>, TResult> QueryHandler<TResult>() => x => (TResult)_handler(x);
         }
     }
 }
