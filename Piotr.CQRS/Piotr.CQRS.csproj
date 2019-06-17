@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
-    <CodeAnalysisRuleSet>CQRS.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Piotr.CQRS.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
