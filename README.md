@@ -1,4 +1,4 @@
-My implementation of CQRS (Command Query Responsibility Segregation) in C#. I successfully use this approach in single and medium size projects.
+My implementation of CQRS (Command Query Responsibility Segregation) in C#. I successfully use this approach in small and medium size projects.
 
 To successfully use this library, you have to follow these 4 steps:
 1. Define command/query with handler.
